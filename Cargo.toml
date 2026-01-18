@@ -1,0 +1,19 @@
+[package]
+name = "lansync"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+warp = { version = "0.4.1", features = ["websocket", "server"] }
+tokio = { version = "1.49", features = ["rt-multi-thread", "macros"] }
+qrcode = "0.14"
+local-ip-address = "0.6.9"
+futures-util = "0.3.31"
+ctrlc = "3.5.1"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true
+panic = "abort"
