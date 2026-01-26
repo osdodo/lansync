@@ -93,12 +93,11 @@ async fn handle(
             } => {}
             _ = async {
                 while let Some(msg) = stream.next().await {
-                    if let Ok(msg) = msg {
-                        if let Ok(text) = msg.to_str() {
+                    if let Ok(msg) = msg
+                        && let Ok(text) = msg.to_str() {
                             *state.lock().await = text.to_string();
                             let _ = tx.send(text.to_string());
                         }
-                    }
                 }
             } => {}
         }
